@@ -8,8 +8,8 @@ const studentlessonRoutes = require('./api/routes/studentlesson');
 app.use(morgan('dev'));
 
 // Routes which handels requests
-app.use('/msgboard', msgboardRoutes);
-app.use('/studentlesson', studentlessonRoutes);
+app.use('./routes/msgboard', msgboardRoutes);
+app.use('./routes/studentlesson', studentlessonRoutes);
 
 app.use((req, res, next) => {
     const error = new Error('Not found');
