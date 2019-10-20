@@ -8,7 +8,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-    res.status(200).json({
+    res.status(201).json({
         message: 'Handling post'
     });
 });
@@ -26,4 +26,17 @@ router.get('/:msgId', (req, res, next) => {
         })
     }
 });
+
+router.patch('/:msgId', (req, res, next) => {
+    res.status(200).json({
+        message: 'Updated message'
+    });
+});
+
+router.delete('/:msgId', (req, res, next) => {
+    res.status(200).json({
+        message: 'Deleted message'
+    });
+});
+
 module.exports = router;
