@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
+
+const MsgBoard = require('../models/msgBoard');
 
 router.get('/', (req, res, next) => {
     res.status(200).json({
