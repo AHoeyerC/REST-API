@@ -30,7 +30,7 @@ router.post('/', (req, res, next) => {
     .then(result => {
         console.log(result);
         res.status(201).json({
-            messageB: 'Handling post',
+            message: 'Handling post',
             createdMessageB: result
         });
     })
@@ -65,7 +65,18 @@ router.patch('/:msgId', (req, res, next) => {
     for (const ops of req.body) {
         updateOps[ops.propName] = ops.value;
     }
-    MsgBoard.update({_id: id}, { $set: updateOps });
+    MsgBoard.update({_id: id}, { $set: updateOps })
+    .exec()
+    .then(res => {
+        console.log(result),
+        res.status(200).json(result);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({
+            error: err
+        });
+    });
 });
 
 router.delete('/:msgId', (req, res, next) => {
