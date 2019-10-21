@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
+
+const StudentLesson = require('../models/studentLesson');
 
 router.get('/', (req, res, next) => {
     res.status(200).json({
@@ -8,14 +11,27 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-    const lesson = {
-        lessonId: req.body.lessonId,
-        topic: req.body.topic
-    };
+    const studentLesson = new StudentLesson({
+        _id: mongoose.Types.ObjectId(),
+        name: req.body.name,
+        topic: req.body.topic,
+        lessonNumber: req.body.lessonNumber
+    });
+    studentLesson
+    .save()
+    .then(result => {
+        console.log(result);
+    })
+    .catch(err => console.log(err));
     res.status(201).json({
         message: 'Student lesson created',
-        lesson: lesson
+        createdLesson: lesson
     });
+});
+
+router.get('/:studentLessonId', (req, res, next) => {
+    const id = req.params.studentLessonId;
+    
 });
 
 router.get('/:studentlessonId', (req, res, next) => {

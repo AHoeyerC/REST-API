@@ -25,15 +25,17 @@ app.use((req, res, next) => {
     next();
 });
 
+//Database connection
 mongoose.connect(
     'mongodb+srv://AHoeyerC:'
     + process.env.MONGO_ATLAS_PW +
     '@nodebasic-1ajhh.mongodb.net/test?retryWrites=true&w=majority',
     {
-        useMongoClient: true
+        useNewUrlParser: true,
+        useUnifiedTopology: true
     }
     );
-    
+
 // Routes which handels requests
 app.use('./routes/msgboard', msgboardRoutes);
 app.use('./routes/studentlesson', studentlessonRoutes);
