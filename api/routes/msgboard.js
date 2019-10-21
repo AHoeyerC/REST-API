@@ -30,8 +30,8 @@ router.post('/', (req, res, next) => {
     .then(result => {
         console.log(result);
         res.status(201).json({
-            message: 'Handling post',
-            createdMessageB: result
+            message: 'Message created',
+            createdMessageB: msg
         });
     })
     .catch(err => {
@@ -67,7 +67,7 @@ router.patch('/:msgId', (req, res, next) => {
     }
     MsgBoard.update({_id: id}, { $set: updateOps })
     .exec()
-    .then(res => {
+    .then(result => {
         console.log(result),
         res.status(200).json(result);
     })

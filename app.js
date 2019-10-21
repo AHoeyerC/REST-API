@@ -11,6 +11,17 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+//Database connection
+mongoose.connect(
+    'mongodb+srv://AHoeyerC:'
+    + process.env.MONGO_ATLAS_PW +
+    '@nodebasic-1ajhh.mongodb.net/test?retryWrites=true&w=majority',
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    }
+    );
+
 app.use((req, res, next) => {
     //Skal ændres, så andre webpages ikke kan få fat i API'en
     res.header('Acces-Control-Allow-Origin', '*');
@@ -25,27 +36,16 @@ app.use((req, res, next) => {
     next();
 });
 
-//Database connection
-mongoose.connect(
-    'mongodb+srv://AHoeyerC:'
-    + process.env.MONGO_ATLAS_PW +
-    '@nodebasic-1ajhh.mongodb.net/test?retryWrites=true&w=majority',
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    }
-    );
-
 // Routes which handels requests
-app.use('./routes/msgboard', msgboardRoutes);
-app.use('./routes/studentlesson', studentlessonRoutes);
+app.use('./msgboard', msgboardRoutes);
+app.use('./studentlesson', studentlessonRoutes);
 
 // Error handling
 app.use((req, res, next) => {
     const error = new Error('Not found');
     error.status = 404;
     next(error);
-});
+})
 
 app.use((error, req, res, next) => {
     res.status(error.status || 500);
