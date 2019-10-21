@@ -8,8 +8,13 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
+    const lesson = {
+        lessonId: req.body.lessonId,
+        topic: req.body.topic
+    };
     res.status(201).json({
-        message: 'Student lesson created'
+        message: 'Student lesson created',
+        lesson: lesson
     });
 });
 
