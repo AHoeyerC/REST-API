@@ -8,8 +8,13 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
+    const msg = {
+        name: req.body.name,
+        message: req.body.message
+    };
     res.status(201).json({
-        message: 'Handling post'
+        message: 'Handling post',
+        createdMessage: msg
     });
 });
 
