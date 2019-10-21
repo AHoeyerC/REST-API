@@ -12,7 +12,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
     const studentLesson = new StudentLesson({
-        _id: mongoose.Types.ObjectId(),
+        _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         topic: req.body.topic,
         lessonNumber: req.body.lessonNumber
