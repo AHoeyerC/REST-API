@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-
+const mongoose = require('mongoose');
 
 const msgboardRoutes = require('./api/routes/msgboard');
 const studentlessonRoutes = require('./api/routes/studentlesson');
@@ -24,15 +24,6 @@ app.use((req, res, next) => {
     };
     next();
 });
-
-mongoose.connect(
-    'mongodb+srv://AHoeyerC:'
-    + process.env.MONGO_ATLAS_PW +
-    '@nodebasic-1ajhh.mongodb.net/test?retryWrites=true&w=majority',
-    {
-        useMongoClient: true
-    }
-    );
 
 // Routes which handels requests
 app.use('./routes/msgboard', msgboardRoutes);
