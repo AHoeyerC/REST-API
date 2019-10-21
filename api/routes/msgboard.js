@@ -6,10 +6,24 @@ const MsgBoard = require('../models/msgBoard');
 
 router.get('/', (req, res, next) => {
     MsgBoard.find()
+    .select('name messageB _id')
     .exec()
     .then(docs => {
-        console.log(docs);
-        res.status(200).json(docs);
+        const response = {
+            count: docs.length,
+            messageB: docs.map(doc => {
+                return {
+                    name: doc.name,
+                    messageB: doc.messageB,
+                    _id: doc._id,
+                    request: {
+                        type: 'GET',
+                        url: 'http://localhost:3000/msgboard/' + doc._id
+                    }
+                }
+            })
+        };
+        res.status(200).json(response);
     })
     .catch(err => {
         console.log(err);

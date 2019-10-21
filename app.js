@@ -37,8 +37,8 @@ app.use((req, res, next) => {
 });
 
 // Routes which handels requests
-app.use('./msgboard', msgboardRoutes);
-app.use('./studentlesson', studentlessonRoutes);
+app.use('/msgboard', msgboardRoutes);
+app.use('/studentlesson', studentlessonRoutes);
 
 // Error handling
 app.use((req, res, next) => {
