@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 
 const msgboardRoutes = require('./api/routes/msgboard');
 const studentlessonRoutes = require('./api/routes/studentlesson');
+const lessonRoutes = require('./api/routes/lesson');
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
@@ -20,7 +21,8 @@ mongoose.connect(
         useNewUrlParser: true,
         useUnifiedTopology: true
     }
-    );
+);
+mongoose.Promise = global.Promise;
 
 app.use((req, res, next) => {
     //Skal ændres, så andre webpages ikke kan få fat i API'en
@@ -39,6 +41,7 @@ app.use((req, res, next) => {
 // Routes which handels requests
 app.use('/msgboard', msgboardRoutes);
 app.use('/studentlesson', studentlessonRoutes);
+app.use('/lesson', lessonRoutes);
 
 // Error handling
 app.use((req, res, next) => {
