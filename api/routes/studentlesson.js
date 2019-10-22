@@ -77,6 +77,11 @@ router.get('/:studentLessonId', (req, res, next) => {
     StudentLesson.findById(req.params.studentlessonId)
     .exec()
     .then(studentLesson => {
+        if (!studentLesson) {
+            return res.status(404).json({
+                message: 'Student Lesson not found'
+            });
+        }
         res.status(200).json({
             studentLesson: studentLesson,
             request: {
