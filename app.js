@@ -9,6 +9,7 @@ const studentlessonRoutes = require('./api/routes/studentlesson');
 const lessonRoutes = require('./api/routes/lesson');
 
 app.use(morgan('dev'));
+app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 

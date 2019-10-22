@@ -9,6 +9,7 @@ router.get('/', (req, res, next) => {
     StudentLesson
     .find()
     .select('lesson quantity _id')
+    .populate('product', 'name')
     .exec()
     .then(docs => {
         res.status(200).json({
@@ -75,6 +76,7 @@ router.post('/', (req, res, next) => {
 
 router.get('/:studentLessonId', (req, res, next) => {
     StudentLesson.findById(req.params.studentlessonId)
+    .populate('product')
     .exec()
     .then(studentLesson => {
         if (!studentLesson) {
