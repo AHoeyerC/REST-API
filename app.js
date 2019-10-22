@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const msgboardRoutes = require('./api/routes/msgboard');
 const studentlessonRoutes = require('./api/routes/studentlesson');
 const lessonRoutes = require('./api/routes/lesson');
+const userRoutes = require('./api/routes/user');
 
 app.use(morgan('dev'));
 app.use('/uploads', express.static('uploads'));
@@ -43,6 +44,7 @@ app.use((req, res, next) => {
 app.use('/msgboard', msgboardRoutes);
 app.use('/studentlesson', studentlessonRoutes);
 app.use('/lesson', lessonRoutes);
+app.use('/user', userRoutes);
 
 // Error handling
 app.use((req, res, next) => {

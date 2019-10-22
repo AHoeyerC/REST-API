@@ -1,5 +1,6 @@
 {
     "env": {
-        "MONGO_ATLAS_PW": "Rasor3388"
+        "MONGO_ATLAS_PW": "Rasor3388",
+        "JWT_KEY": "JSONTokenSecret"
     }
 }
